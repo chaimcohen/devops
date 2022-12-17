@@ -1,0 +1,17 @@
+---
+- name: Install TerraForm
+  hosts: ansible
+  gather_facts: false
+  become: true
+  vars:
+    temp_dir: "/usr/local/bin/"
+    url: "https://releases.hashicorp.com/terraform/1.3.6/terraform_1.3.6_linux_amd64.zip"
+  tasks:
+
+    - name: Get terraform binary
+      unarchive:
+        src: "{{ url }}"
+        dest: "{{ temp_dir }}"
+        remote_src: yes
+      changed_when: false
+
