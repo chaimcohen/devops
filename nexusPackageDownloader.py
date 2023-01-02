@@ -9,7 +9,7 @@ api_url = "http://34.165.200.87:8081/service/rest/v1/components?repository=pipey
 response = requests.get(api_url)
 # print(response)
 x = response.json()
-package_to_upload = ""
+#package_to_upload = ""
 headers = {
     'accept': 'application/json',
 }
@@ -32,8 +32,8 @@ while continueFlag:
             else:
                 print("failed downloading")
             open("packages/" + packageName, "wb").write(response.content)
-            package_to_upload = packageName
-            files = {'pypi.asset': open("packages/" + package_to_upload, 'rb'), }
+            #package_to_upload = packageName
+            files = {'pypi.asset': open("packages/" + packageName, 'rb'), }
             response = requests.post('http://34.165.200.87:8081/service/rest/v1/components', params=params, headers=headers, files=files, auth=('admin', 'admin'))
             if response.status_code == 204:
                 print("upload succeeded")
